@@ -1,39 +1,349 @@
 ---
 config:
-  - name: number_of_fruits
-    description: The number of fruits we have.
+  - name: test_metric
+    description: A test metric to demonstrate gauge functionality
     type: gauge
-    labels: [name, color]
+    labels: [label1, label2]
     sequence:
       - time: 5
         values: 0-20
         operation: inc
         labels:
-          name: apple
-          color: red
+          label1: value1
+          label2: value2
       - eval_time: 5
         operation: set
         labels:
-          name: apple
-          color: red
+          label1: value1
+          label2: value2
       - time: 5
         eval_time: 1
         values: 0-20
         operation: inc
         labels:
-          name: apple
-          color: green
+          label1: value1
+          label2: value3
       - time: 5
         eval_time: 1
         values: 0-5
         operation: dec
         labels:
-          name: apple
-          color: green
+          label1: value1
+          label2: value3
       - time: 5
         eval_time: 1
         value: 3
         operation: inc
         labels:
-          name: apple
-          color: yellow
+          label1: value1
+          label2: value4
+  - name: fetch_homepage_providers
+    description: Fetch homepage providers metric
+    type: gauge
+    labels: [value1]
+    sequence:
+      - time: 5
+        values: 0-10
+        operation: inc
+        labels:
+          value1: value1
+  - name: hpp_fetching_content_providers_latency_bucket
+    description: Latency bucket for fetching content providers
+    type: gauge
+    labels: [le, context]
+    sequence:
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: 0.1
+          context: homepage
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: 0.2
+          context: homepage
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: 0.5
+          context: homepage
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: 1.0
+          context: homepage
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: +Inf
+          context: homepage
+  - name: hpp_fetching_content_providers_latency_count
+    description: Latency count for fetching content providers
+    type: counter 
+    labels: [context]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          context: homepage
+  - name: hpp_fetching_content_providers_latency_sum
+    description: Latency sum for fetching content providers
+    type: counter 
+    labels: [context]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          context: homepage
+  - name: moon_http_latency_seconds_bucket
+    description: Latency bucket for moon HTTP requests
+    type: gauge
+    labels: [le, label1]
+    sequence:
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: 0.1
+          label1: value1
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: 0.2
+          label1: value1
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: 0.5
+          label1: value1
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: 1.0
+          label1: value1
+      - time: 5
+        values: 0-20
+        operation: inc
+        labels:
+          le: +Inf
+          label1: value1
+  - name: moon_http_latency_seconds_count
+    description: Latency count for moon HTTP requests
+    type: counter 
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          label1: value1
+  - name: moon_http_latency_seconds_sum
+    description: Latency sum for moon HTTP requests
+    type: counter 
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          label1: value1
+  - name: moon_requests_per_minute
+    description: Requests per minute for moon service
+    type: gauge
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+      - time: 5
+        eval_time: 1
+        value: 50
+        operation: set
+        labels:
+          label1: value1
+  - name: moon_http_error_rate
+    description: Error rate for moon HTTP requests
+    type: gauge
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+      - time: 5
+        eval_time: 1
+        value: 10
+        operation: set
+        labels:
+          label1: value1
+  - name: moon_desired_k8s_instance
+    description: Desired Kubernetes instances for moon service
+    type: gauge
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-10
+        operation: inc
+        labels:
+          label1: value1
+      - time: 5
+        eval_time: 1
+        value: 5
+        operation: set
+        labels:
+          label1: value1
+  - name: moon_k8s_instance
+    description: Current Kubernetes instances for moon service
+    type: gauge
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-10
+        operation: inc
+        labels:
+          label1: value1
+      - time: 5
+        eval_time: 1
+        value: 3
+        operation: set
+        labels:
+          label1: value1
+  - name: moon_cpu_usage_100ms_percentiles_bucket
+    description: CPU usage percentiles for moon service
+    type: gauge
+    labels: [label1, le]
+    sequence:
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: 0.1
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: 0.2
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: 0.5
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: 1.0
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: +Inf
+  - name: moon_cpu_usage_100ms_percentiles_count
+    description: CPU usage count for moon service
+    type: counter 
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          label1: value1
+  - name: moon_cpu_usage_100ms_percentiles_sum
+    description: CPU usage sum for moon service
+    type: counter 
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          label1: value1
+  - name: moon_memory_usage
+    description: Memory usage for moon service
+    type: gauge
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          label1: value1
+      - time: 5
+        eval_time: 1
+        value: 500
+        operation: set
+        labels:
+          label1: value1
+  - name: moon_cpu_throttling_percentage_100ms_percentiles_bucket
+    description: CPU throttling percentage percentiles for moon service
+    type: gauge
+    labels: [label1, le]
+    sequence:
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: 0.1
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: 0.2
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: 0.5
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: 1.0
+      - time: 5
+        values: 0-100
+        operation: inc
+        labels:
+          label1: value1
+          le: +Inf
+  - name: moon_cpu_throttling_percentage_100ms_percentiles_count
+    description: CPU throttling percentage count for moon service
+    type: counter 
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          label1: value1
+  - name: moon_cpu_throttling_percentage_100ms_percentiles_sum
+    description: CPU throttling percentage sum for moon service
+    type: counter 
+    labels: [label1]
+    sequence:
+      - time: 5
+        values: 0-1000
+        operation: inc
+        labels:
+          label1: value1
